@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEASTBOIZ99 - Minecraft Content Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --dark-bg: #0f0f0f;
+            --card-bg: #1f1f1f;
+            --accent: #00cc66;
+            --text: #ffffff;
+            --hover: #33ff99;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--dark-bg);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1560672650-2c3c9c2eb5d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: #000;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--hover);
+            transform: scale(1.05);
+        }
+
+        /* Videos Section */
+        .videos-section {
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 100, 0.2);
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover .thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            opacity: 0.8;
+            transition: 0.3s;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 40px;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .socials a {
+            color: var(--text);
+            font-size: 24px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .socials a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .videos-section, .about-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">BEASTBOIZ99</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#social">Follow</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to BEASTBOIZ99</h1>
+        <p>Epic Minecraft Gameplay • Crazy Builds • Ultimate Survival Adventures</p>
+        <a href="https://www.youtube.com/@BeastBoizzz" class="cta-button" target="_blank">
+            <i class="fab fa-youtube"></i> Subscribe Now
+        </a>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="videos-section" id="videos">
+        <h2 class="section-title">Latest Videos</h2>
+        <div class="video-grid">
+
+            <!-- Video cards will be dynamically loaded from YouTube -->
+            <div class="video-card" onclick="window.open('https://www.youtube.com/@BeastBoizzz/videos', '_blank')">
+                <div class="thumbnail">
+                    <img src="https://i.ytimg.com/vi/6g-dt6gB8_c/maxresdefault.jpg" alt="Minecraft Video">
+                    <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">EPIC MINECRAFT MANSION BUILD - Survival Let's Play</h3>
+                    <div class="video-meta">
+                        <span>250K views</span>
+                        <span>1 week ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="window.open('https://www.youtube.com/@BeastBoizzz/videos', '_blank')">
+                <div class="thumbnail">
+                    <img src="https://i.ytimg.com/vi/M6c8i26UlC4/maxresdefault.jpg" alt="Minecraft Video">
+                    <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">MINECRAFT BUT EVERY BLOCK IS OP - Challenge Mode</h3>
+                    <div class="video-meta">
+                        <span>180K views</span>
+                        <span>2 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="window.open('https://www.youtube.com/@BeastBoizzz/videos', '_blank')">
+                <div class="thumbnail">
+                    <img src="https://i.ytimg.com/vi/FpMpCb-dK_c/maxresdefault.jpg" alt="Minecraft Video">
+                    <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">100 DAYS in SKYBLOCK - Hardcore Minecraft Survival</h3>
+                    <div class="video-meta">
+                        <span>350K views</span>
+                        <span>3 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">About BEASTBOIZ99</h2>
+        <div class="about-content">
+            <p>Welcome to the official BEASTBOIZ99 website! I create the most entertaining Minecraft content including insane builds, survival challenges, mod reviews, and epic adventures. Join the Beast Army and let's explore the blocky world together!</p>
+            <p>Make sure to subscribe to my YouTube channel and turn on notifications so you never miss an upload!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="social">
+        <div class="socials">
+            <a href="https://www.youtube.com/@BeastBoizzz" target="_blank" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.twitter.com/" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.discord.com/" target="_blank" title="Discord">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.tiktok.com/" target="_blank" title="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#videos">Videos</a>
+            <a href="#about">About</a>
+            <a href="#social">Follow</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+        
+        <p class="copyright">© 2023 BEASTBOIZ99. All rights reserved.</p>
+        <p class="copyright">Official Website of YouTube Minecraft Content Creator</p>
+    </footer>
+
+    <script>
+        // Simple click handler for video cards
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', function() {
+                window.open('https://www.youtube.com/@BeastBoizzz/videos', '_blank');
+            });
+        });
+    </script>
+
+</body>
+</html>
